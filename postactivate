@@ -1,0 +1,6 @@
+#!/bin/bash
+# This hook is run after every virtualenv is activated.
+
+touch $VIRTUAL_ENV/.python_history
+unset PYTHONSTARTUP
+export PYTHONSTARTUP=$VIRTUAL_ENV/.pythonrc

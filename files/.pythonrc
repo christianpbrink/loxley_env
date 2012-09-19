@@ -1,0 +1,34 @@
+import atexit
+import os
+import datetime
+import pprint
+import re
+import sys
+import time
+import timeit
+
+try:
+    import readline
+except ImportError:
+    pass
+else:
+    import rlcompleter
+    readline.parse_and_bind("tab: complete")
+
+histfile = os.environ['VIRTUAL_ENV'] + '/.python_history'
+if os.path.exists(histfile):
+  try:
+    readline.read_history_file(histfile)
+  except IOError:
+    pass
+  readline.parse_and_bind('tab: complete')
+  atexit.register(readline.write_history_file, histfile)
+
+# What is this?  Ask Lukman, or research it...
+def t(*args):
+    return timeit.Timer(*args).timeit()
+
+def pp(model):
+    out = pprint.pformat(model.document)
+    out = re.sub(r"u'", "'", out)
+    print out
