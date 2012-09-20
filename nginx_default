@@ -2,11 +2,11 @@ server {
     listen   80;
     server_name localhost;
 
-    access_log /opt/django/logs/nginx/vc_access.log;
-    error_log  /opt/django/logs/nginx/vc_error.log;
+    access_log /var/log/nginx/access.log;
+    error_log  /var/log/nginx/access.log;
 
     # no security problem here, since / is alway passed to upstream
-    root /opt/django/;
+    root $LOXLEY_ROOT;
     # serve directly - analogous for static/staticfiles
     location /media/ {
         # if asset versioning is used
